@@ -8,54 +8,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- BootstrapのCSS読み込み -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- jQuery読み込み -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- BootstrapのJS読み込み -->
+    <script src="js/bootstrap.min.js"></script>	
     
-    <!-- 2026年リニューアル：VanSideVibes 専用カスタムデザイン -->
+    <!-- 現場仕様のダークデザイン ＋ ホワイトボードCSS -->
     <style>
         body {
-            background-color: #121212;
-            color: #e0e0e0;
+            background-color: #121212 !important;
+            color: #e0e0e0 !important;
             font-family: 'Helvetica Neue', Arial, sans-serif;
-            padding-bottom: 60px;
         }
-        
         /* ヘッダーデザイン */
         .site-header {
             background-color: #000000;
             padding: 40px 20px;
             text-align: center;
-            border-bottom: 4px solid #fbc02d; /* レゲエ・ゴールドのアクセントライン */
-            margin-bottom: 30px;
+            border-bottom: 2px solid #ffcc00;
         }
         .site-header h1 {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 900;
             letter-spacing: 4px;
-            color: #ffffff;
+            color: #fff;
             margin: 0 0 5px 0;
+        }
+        .tamuragumi-text {
+            font-size: 11px;
+            color: #666;
+            letter-spacing: 2px;
             text-transform: uppercase;
         }
         
-        /* メインコンテンツ枠 */
+        /* コンテンツエリア */
         .main-container {
             max-width: 600px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 30px 15px;
         }
-        
-        /* プロジェクトタイトル */
         .project-title {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
-            color: #fbc02d;
-            border-left: 5px solid #fbc02d;
-            padding-left: 12px;
-            margin-top: 30px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
+            color: #fff;
+            border-left: 4px solid #ffcc00;
+            padding-left: 10px;
+            margin-bottom: 25px;
             letter-spacing: 1px;
         }
+
+        /* ──────── 現場風ホワイトボードの再現 ──────── */
+        .whiteboard {
+            background-color: #f7f9fa; /* ホワイトボードの白 */
+            border: 6px solid #b0b8bc; /* アルミフレーム枠 */
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 40px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1), 0 4px 15px rgba(0,0,0,0.5);
+        }
+        .board-title {
+            color: #222222;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 2px double #888;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+        /* ボードの行設定 */
+        .board-row {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px dashed #ccc;
+            padding: 8px 0;
+        }
+        .board-row:last-child {
+            border-bottom: none;
+        }
+        .board-label {
+            color: #444;
+            font-size: 13px;
+            font-weight: bold;
+            width: 90px;
+            flex-shrink: 0;
+        }
+        /* 青いマグネット名札 */
+        .blue-tag {
+            background: linear-gradient(135deg, #005bac, #004488); /* マグネット札の青 */
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 3px;
+            box-shadow: 1px 2px 3px rgba(0,0,0,0.3);
+            border-left: 3px solid #003366;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-right: 8px;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+        }
+        /* 連絡事項などの手書き風テキスト */
+        .board-note {
+            color: #000000; /* 黒のマーカー風 */
+            font-size: 13px;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        /* ─────────────────────────────────── */
         
-        /* 楽曲リストスタイル */
+        /* トラックリストのスタイル */
         .track-list {
             list-style: none;
             padding: 0;
@@ -64,85 +127,93 @@
         .track-item {
             background-color: #1e1e1e;
             border: 1px solid #2d2d2d;
-            border-radius: 8px;
+            border-radius: 6px;
             padding: 15px 20px;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background-color 0.2s;
-        }
-        .track-item:hover {
-            background-color: #252525;
         }
         .track-name {
             font-size: 16px;
             font-weight: bold;
-            color: #ffffff;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            padding-right: 15px;
+            color: #f0f0f0;
         }
         
         /* ダウンロードボタン */
         .download-btn {
-            background-color: #fbc02d;
-            color: #000000 !important;
+            background-color: #ffcc00;
+            color: #121212;
             font-weight: bold;
             font-size: 13px;
-            padding: 8px 16px;
+            padding: 6px 15px;
             border-radius: 4px;
             text-decoration: none !important;
-            transition: background-color 0.2s, transform 0.1s;
-            white-space: nowrap;
+            transition: background 0.2s;
         }
         .download-btn:hover {
-            background-color: #fff176;
-        }
-        .download-btn:active {
-            transform: scale(0.95);
+            background-color: #e6b800;
+            color: #121212;
         }
         
-        /* フッター（TAMURAGUMIを小さく配置） */
+        /* フッター */
         footer {
             text-align: center;
-            margin-top: 60px;
-            padding: 20px;
-            border-top: 1px solid #2d2d2d;
-        }
-        .tamuragumi {
+            padding: 40px 20px;
             font-size: 11px;
-            color: #666666;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-        .copyright {
-            font-size: 10px;
-            color: #444444;
+            color: #444;
+            border-top: 1px solid #222;
+            margin-top: 50px;
         }
     </style>
 </head>
 
 <body>
 
-<!-- ヘッダー -->
+<!-- ヘッダーエリア -->
 <div class="site-header">
     <h1>VanSideVibes</h1>
+    <div class="tamuragumi-text">TAMURAGUMI</div>
 </div>
 
 <!-- メインコンテンツ -->
 <div class="main-container">
 
-    <!-- プロジェクト 1 -->
-    <div class="project-title">project1</div>
+    <!-- 📋 現場風ホワイトボード・予定表セクション -->
+    <div class="whiteboard">
+        <div class="board-title">本日の割当 / 運行予定表</div>
+        
+        <!-- 行1 -->
+        <div class="board-row">
+			<div class="board-label">TRACK 1：</div>
+			<div class="blue-tag">AICHIN</div>
+			<span class="board-note">Vo.入れ 予定</span>
+        </div>
+        
+        <!-- 行2 -->
+        <div class="board-row">
+			<div class="board-label">TRACK 2：</div>
+			<div class="blue-tag">ANSA</div>
+			<div class="blue-tag">Jr.DEE</div>
+			<span class="board-note">コンビ合流</span>
+        </div>
+        
+        <!-- 行3 -->
+        <div class="board-row">
+			<div class="board-label">TRACK 3：</div>
+			<div class="blue-tag">N.Shin</div>
+			<span class="board-note">Mix調整中</span>
+        </div>
+    </div>
+
+
+    <!-- 🎵 音源ダウンロードセクション -->
+    <div class="project-title">PROJECT1</div>
     
     <ul class="track-list">
         <!-- 1曲目 -->
         <li class="track-item">
             <span class="track-name">1. 曲名が入ります</span>
-            <!-- 💡 download属性をつけることで、クリックしたときに再生ではなくダウンロードになります -->
             <a href="audio/track1.mp3" download="track1.mp3" class="download-btn">DOWNLOAD</a>
         </li>
         
@@ -163,8 +234,8 @@
 
 <!-- フッター -->
 <footer>
-    <div class="tamuragumi">TAMURAGUMI</div>
-    <div class="copyright">&copy; VanSideVibes All Rights Reserved.</div>
+    <div class="tamuragumi-text" style="margin-bottom: 5px;">TAMURAGUMI</div>
+    <p>&copy; VanSideVibes All Rights Reserved.</p>
 </footer>
 
 </body>

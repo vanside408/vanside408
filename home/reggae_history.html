@@ -25,7 +25,7 @@
             margin: 0;
         }
         
-        /* 全体を囲むアルミフレーム枠（画面の縁：10pxから15pxに太くして存在感をアップ） */
+        /* 全体を囲むアルミフレーム枠（画面の縁：15pxに太くして存在感をアップ） */
         .whiteboard-frame {
             border: 15px solid #b0b8bc;
             min-height: 100vh;
@@ -42,19 +42,19 @@
         /* ボードの最上部ヘッダータイトル（文字サイズを大きく） */
         .board-header {
             text-align: center;
-            border-bottom: 5px solid #111; /* マジック線をさらに太く */
+            border-bottom: 5px solid #111; /* マジック線を太く */
             padding-bottom: 20px;
             margin-bottom: 40px;
         }
         .board-header h1 {
-            font-size: 42px; /* 32px -> 42px に拡大 */
+            font-size: 42px;
             font-weight: 900;
             letter-spacing: 8px;
             margin: 0 0 8px 0;
             color: #111;
         }
         .tamuragumi-sub {
-            font-size: 14px; /* 11px -> 14px に拡大 */
+            font-size: 14px;
             color: #555;
             letter-spacing: 3px;
             font-weight: bold;
@@ -62,39 +62,39 @@
         
         /* 各プロジェクトを区切るブロック */
         .project-section {
-            margin-bottom: 60px; /* 余白を広げてメリハリを強化 */
+            margin-bottom: 60px;
             padding-bottom: 10px;
         }
         
-        /* プロジェクトの区切りタイトル（文字サイズと余白を拡大） */
+        /* プロジェクトの区切りタイトル */
         .project-divider-title {
-            font-size: 24px; /* 20px -> 24px に拡大 */
+            font-size: 24px;
             font-weight: bold;
             color: #111;
             letter-spacing: 2px;
             margin-bottom: 20px;
             padding: 8px 15px;
             background-color: #e2e8eb;
-            border-left: 8px solid #111; /* 縦線を太く */
+            border-left: 8px solid #111;
             border-bottom: 1px solid #111;
         }
         
-        /* トラック行の設定（縦のスペースを広く） */
+        /* トラック行の設定 */
         .track-row {
             display: flex;
-            flex-direction: column; /* スマホやプレイヤー配置を考慮して縦並び要素を整理 */
+            flex-direction: column;
             gap: 12px;
-            border-bottom: 2px dashed #b5bfc4; /* 点線を太く見やすく */
+            border-bottom: 2px dashed #b5bfc4;
             padding: 25px 5px;
         }
         .track-row-upper {
             display: flex;
             align-items: center;
-            justify-content: space-between; /* 上段で曲名とDLボタンを左右に配置 */
+            justify-content: space-between;
             width: 100%;
         }
         .track-row:last-of-type {
-            border-bottom: 4px double #888; /* 二重線を太く */
+            border-bottom: 4px double #888;
         }
         
         /* 左側の情報エリア */
@@ -104,20 +104,20 @@
             gap: 15px;
         }
         .track-num {
-            font-size: 18px; /* 14px -> 18px に拡大 */
+            font-size: 18px;
             font-weight: bold;
             color: #111;
             width: 90px;
             flex-shrink: 0;
         }
         
-        /* 青いマグネット名札（サイズを大きく・黒文字をより太く） */
+        /* 青いマグネット名札（文字色は黒） */
         .blue-magnet-tag {
             background: linear-gradient(135deg, #005bac, #004488);
             color: #000000 !important;
-            font-size: 18px; /* 13px -> 18px に拡大 */
+            font-size: 18px;
             font-weight: 900;
-            padding: 8px 22px; /* 札をひと回り大きく */
+            padding: 8px 22px;
             border-radius: 4px;
             box-shadow: 2px 3px 5px rgba(0,0,0,0.3);
             border-left: 4px solid #002244;
@@ -132,18 +132,18 @@
             margin-top: 5px;
         }
         audio {
-            width: 100%; /* 横幅いっぱいにプレイヤーを表示 */
+            width: 100%;
             height: 40px;
             outline: none;
         }
         
-        /* マーカーで書いたようなダウンロードボタン（サイズを拡大） */
+        /* マーカーで書いたようなダウンロードボタン */
         .board-download-btn {
             background-color: transparent;
             color: #ff3333;
-            border: 3px solid #ff3333; /* 枠線を太く */
+            border: 3px solid #ff3333;
             font-weight: bold;
-            font-size: 15px; /* 12px -> 15px に拡大 */
+            font-size: 15px;
             padding: 6px 18px;
             border-radius: 5px;
             text-decoration: none !important;
@@ -160,7 +160,7 @@
         .board-footer {
             text-align: center;
             padding-top: 50px;
-            font-size: 14px; /* 11px -> 14px に拡大 */
+            font-size: 14px;
             color: #666;
         }
     </style>
@@ -183,54 +183,72 @@
         <div class="project-section">
             <div class="project-divider-title">■ PROJECT 1</div>
             
-            <!-- 1曲目 -->
+            <!-- 1曲目（ここに指定の音源を紐付けました） -->
             <div class="track-row">
                 <div class="track-row-upper">
                     <div class="track-info-area">
                         <div class="track-num">TRACK 1：</div>
-                        <div class="blue-magnet-tag">曲名A</div>
+                        <!-- 青札の中の曲名はお好みで変更してください -->
+                        <div class="blue-magnet-tag">BLUELIGHT RIDDIM</div>
                     </div>
-                    <a href="audio/p1_track1.mp3" download="p1_track1.mp3" class="board-download-btn">DOWNLOAD</a>
+                    <a href="ns_audio/176_bluelightriddim.mp3" download="176_bluelightriddim.mp3" class="board-download-btn">DOWNLOAD</a>
                 </div>
                 <!-- 🎵 音源再生プレイヤー -->
                 <div class="audio-player-zone">
-                    <audio src="audio/p1_track1.mp3" controls preload="none"></audio>
+                    <audio src="ns_audio/176_bluelightriddim.mp3" controls preload="none"></audio>
                 </div>
             </div>
             
-            <!-- 2曲目 -->
+            <!-- 2曲目（テスト用ダミー） -->
             <div class="track-row">
                 <div class="track-row-upper">
                     <div class="track-info-area">
                         <div class="track-num">TRACK 2：</div>
                         <div class="blue-magnet-tag">曲名B</div>
                     </div>
-                    <a href="audio/p1_track2.mp3" download="p1_track2.mp3" class="board-download-btn">DOWNLOAD</a>
+                    <a href="ns_audio/p1_track2.mp3" download="p1_track2.mp3" class="board-download-btn">DOWNLOAD</a>
                 </div>
                 <div class="audio-player-zone">
-                    <audio src="audio/p1_track2.mp3" controls preload="none"></audio>
+                    <audio src="ns_audio/p1_track2.mp3" controls preload="none"></audio>
                 </div>
             </div>
             
-            <!-- 3曲目 -->
+            <!-- 3曲目（テスト用ダミー） -->
             <div class="track-row">
                 <div class="track-row-upper">
                     <div class="track-info-area">
                         <div class="track-num">TRACK 3：</div>
                         <div class="blue-magnet-tag">曲名C</div>
                     </div>
-                    <a href="audio/p1_track3.mp3" download="p1_track3.mp3" class="board-download-btn">DOWNLOAD</a>
+                    <a href="ns_audio/p1_track3.mp3" download="p1_track3.mp3" class="board-download-btn">DOWNLOAD</a>
                 </div>
                 <div class="audio-player-zone">
-                    <audio src="audio/p1_track3.mp3" controls preload="none"></audio>
+                    <audio src="ns_audio/p1_track3.mp3" controls preload="none"></audio>
                 </div>
             </div>
         </div>
 
 
-        
+        <!-- ─── PROJECT 2 ブロック ─── -->
+        <div class="project-section">
+            <div class="project-divider-title">■ PROJECT 2</div>
+            
+            <!-- 1曲目 -->
+            <div class="track-row">
+                <div class="track-row-upper">
+                    <div class="track-info-area">
+                        <div class="track-num">TRACK 1：</div>
+                        <div class="blue-magnet-tag">曲名D</div>
+                    </div>
+                    <a href="ns_audio/p2_track1.mp3" download="p2_track1.mp3" class="board-download-btn">DOWNLOAD</a>
+                </div>
+                <div class="audio-player-zone">
+                    <audio src="ns_audio/p2_track1.mp3" controls preload="none"></audio>
+                </div>
+            </div>
         </div>
-       
+
+
         <!-- ボード最下部 -->
         <div class="board-footer">
             <p>TAMURAGUMI &copy; VanSideVibes All Rights Reserved.</p>

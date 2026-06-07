@@ -14,25 +14,29 @@
     <!-- BootstrapのJS読み込み -->
     <script src="js/bootstrap.min.js"></script>	
     
-    <!-- 全面ホワイトボード化カスタムCSS -->
+    <!-- 画面全体ホワイトボード化カスタムCSS -->
     <style>
-        /* ページ全体を事務所の壁風にし、中央にホワイトボードを配置 */
+        /* 画面全体をホワイトボードの白に統一 */
         body {
-            background-color: #2b3033 !important; /* 背景は渋いダークグレー */
+            background-color: #f7f9fa !important; /* ホワイトボードの白 */
             color: #000000 !important;
             font-family: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-            padding: 20px 10px;
+            padding: 0;
+            margin: 0;
         }
         
-        /* 画面いっぱいに広がるホワイトボード */
-        .whiteboard-page {
-            background-color: #f7f9fa; /* ホワイトボードの白 */
-            border: 10px solid #b0b8bc; /* 太めのアルミフレーム枠 */
-            border-radius: 6px;
-            padding: 25px 15px;
+        /* 全体を囲むアルミフレーム枠（画面の縁） */
+        .whiteboard-frame {
+            border: 10px solid #b0b8bc; /* アルミフレーム枠 */
+            min-height: 100vh; /* 画面の最下部まで枠を伸ばす */
+            padding: 30px 15px;
+            box-sizing: border-box;
+        }
+        
+        /* コンテンツの最大幅を制限して見やすく */
+        .whiteboard-content {
             max-width: 650px;
             margin: 0 auto;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.15), 0 10px 30px rgba(0,0,0,0.5);
         }
         
         /* ボードのヘッダータイトル */
@@ -40,10 +44,10 @@
             text-align: center;
             border-bottom: 3px double #666;
             padding-bottom: 12px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
         .board-header h1 {
-            font-size: 26px;
+            font-size: 28px;
             font-weight: bold;
             letter-spacing: 4px;
             margin: 0 0 5px 0;
@@ -60,12 +64,12 @@
         .track-row {
             display: flex;
             align-items: center;
-            justify-content: space-between; /* 左右にきれいに割り振り */
+            justify-content: space-between;
             border-bottom: 1px dashed #b5bfc4; /* マーカーの手書き点線風 */
-            padding: 15px 5px;
+            padding: 18px 5px;
         }
         .track-row:last-of-type {
-            border-bottom: 2px solid #888; /* 最後の行だけ少し太線 */
+            border-bottom: 2px solid #888;
         }
         
         /* 左側の情報エリア（トラック名と青札） */
@@ -82,29 +86,29 @@
             flex-shrink: 0;
         }
         
-        /* 青いマグネット名札（文字色は黒に変更） */
+        /* 青いマグネット名札（文字色は黒） */
         .blue-magnet-tag {
-            background: linear-gradient(135deg, #005bac, #004488); /* 札自体は青 */
-            color: #000000 !important; /* 中の文字はしっかり黒 */
+            background: linear-gradient(135deg, #005bac, #004488);
+            color: #000000 !important;
             font-size: 13px;
-            font-weight: 900; /* 文字を太くして見やすく */
-            padding: 5px 14px;
+            font-weight: 900;
+            padding: 6px 16px;
             border-radius: 3px;
             box-shadow: 1px 2px 3px rgba(0,0,0,0.3);
             border-left: 3px solid #002244;
             letter-spacing: 1px;
             display: inline-block;
-            text-shadow: 0px 1px 0px rgba(255,255,255,0.3); /* 黒文字が沈まないよううっすら影 */
+            text-shadow: 0px 1px 0px rgba(255,255,255,0.3);
         }
         
-        /* マーカーで書いたようなダウンロードボタン */
+        /* マーカーで書いたようなダウンロードボタン（赤マジック風） */
         .board-download-btn {
             background-color: transparent;
-            color: #ff3333; /* 赤マジック風の赤 */
+            color: #ff3333;
             border: 2px solid #ff3333;
             font-weight: bold;
             font-size: 12px;
-            padding: 4px 12px;
+            padding: 5px 14px;
             border-radius: 4px;
             text-decoration: none !important;
             transition: all 0.2s;
@@ -118,7 +122,7 @@
         /* ボードの下部（足元） */
         .board-footer {
             text-align: center;
-            padding-top: 25px;
+            padding-top: 40px;
             font-size: 11px;
             color: #888;
         }
@@ -127,48 +131,49 @@
 
 <body>
 
-<!-- 📋 全面ホワイトボードコンテナ -->
-<div class="whiteboard-page">
+<!-- 📋 画面全体のアルミ枠 -->
+<div class="whiteboard-frame">
+    <div class="whiteboard-content">
 
-    <!-- ボードのタイトル部分 -->
-    <div class="board-header">
-        <h1>VanSideVibes</h1>
-        <div class="tamuragumi-sub">PROJECT1 / RIDDIM DOWNLOAD LIST</div>
-    </div>
-    
-    <!-- 1曲目 -->
-    <div class="track-row">
-        <div class="track-info-area">
-            <div class="track-num">TRACK 1：</div>
-            <div class="blue-magnet-tag">曲名A</div>
+        <!-- ボードのタイトル部分 -->
+        <div class="board-header">
+            <h1>VanSideVibes</h1>
+            <div class="tamuragumi-sub">PROJECT1 / RIDDIM DOWNLOAD LIST</div>
         </div>
-        <!-- download="〇〇" で保存時のファイル名を指定できます -->
-        <a href="audio/track1.mp3" download="track1.mp3" class="board-download-btn">DOWNLOAD</a>
-    </div>
-    
-    <!-- 2曲目 -->
-    <div class="track-row">
-        <div class="track-info-area">
-            <div class="track-num">TRACK 2：</div>
-            <div class="blue-magnet-tag">曲名B</div>
+        
+        <!-- 1曲目 -->
+        <div class="track-row">
+            <div class="track-info-area">
+                <div class="track-num">TRACK 1：</div>
+                <div class="blue-magnet-tag">曲名A</div>
+            </div>
+            <a href="audio/track1.mp3" download="track1.mp3" class="board-download-btn">DOWNLOAD</a>
         </div>
-        <a href="audio/track2.mp3" download="track2.mp3" class="board-download-btn">DOWNLOAD</a>
-    </div>
-    
-    <!-- 3曲目 -->
-    <div class="track-row">
-        <div class="track-info-area">
-            <div class="track-num">TRACK 3：</div>
-            <div class="blue-magnet-tag">曲名C</div>
+        
+        <!-- 2曲目 -->
+        <div class="track-row">
+            <div class="track-info-area">
+                <div class="track-num">TRACK 2：</div>
+                <div class="blue-magnet-tag">曲名B</div>
+            </div>
+            <a href="audio/track2.mp3" download="track2.mp3" class="board-download-btn">DOWNLOAD</a>
         </div>
-        <a href="audio/track3.mp3" download="track3.mp3" class="board-download-btn">DOWNLOAD</a>
-    </div>
+        
+        <!-- 3曲目 -->
+        <div class="track-row">
+            <div class="track-info-area">
+                <div class="track-num">TRACK 3：</div>
+                <div class="blue-magnet-tag">曲名C</div>
+            </div>
+            <a href="audio/track3.mp3" download="track3.mp3" class="board-download-btn">DOWNLOAD</a>
+        </div>
 
-    <!-- ボード最下部 -->
-    <div class="board-footer">
-        <p>TAMURAGUMI &copy; VanSideVibes All Rights Reserved.</p>
-    </div>
+        <!-- ボード最下部 -->
+        <div class="board-footer">
+            <p>TAMURAGUMI &copy; VanSideVibes All Rights Reserved.</p>
+        </div>
 
+    </div>
 </div>
 
 </body>

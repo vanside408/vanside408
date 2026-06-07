@@ -14,124 +14,142 @@
     <!-- BootstrapのJS読み込み -->
     <script src="js/bootstrap.min.js"></script>	
     
-    <!-- 画面全体ホワイトボード化カスタムCSS -->
+    <!-- 画面全体ホワイトボード化・音源再生プレイヤー付きカスタムCSS -->
     <style>
         /* 画面全体をホワイトボードの白に統一 */
         body {
-            background-color: #f7f9fa !important; /* ホワイトボードの白 */
+            background-color: #f7f9fa !important;
             color: #000000 !important;
             font-family: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
             padding: 0;
             margin: 0;
         }
         
-        /* 全体を囲むアルミフレーム枠（画面の縁） */
+        /* 全体を囲むアルミフレーム枠（画面の縁：10pxから15pxに太くして存在感をアップ） */
         .whiteboard-frame {
-            border: 10px solid #b0b8bc; /* アルミフレーム枠 */
-            min-height: 100vh; /* 画面の最下部まで枠を伸ばす */
-            padding: 30px 15px;
+            border: 15px solid #b0b8bc;
+            min-height: 100vh;
+            padding: 40px 20px;
             box-sizing: border-box;
         }
         
-        /* コンテンツの最大幅を制限して見やすく */
+        /* 全体的に大きく表示するために最大幅を750pxに拡大 */
         .whiteboard-content {
-            max-width: 650px;
+            max-width: 750px;
             margin: 0 auto;
         }
         
-        /* ボードの最上部ヘッダータイトル */
+        /* ボードの最上部ヘッダータイトル（文字サイズを大きく） */
         .board-header {
             text-align: center;
-            border-bottom: 4px solid #111; /* 太い黒マジック線 */
-            padding-bottom: 15px;
-            margin-bottom: 35px;
+            border-bottom: 5px solid #111; /* マジック線をさらに太く */
+            padding-bottom: 20px;
+            margin-bottom: 40px;
         }
         .board-header h1 {
-            font-size: 32px;
+            font-size: 42px; /* 32px -> 42px に拡大 */
             font-weight: 900;
-            letter-spacing: 6px;
-            margin: 0 0 5px 0;
+            letter-spacing: 8px;
+            margin: 0 0 8px 0;
             color: #111;
         }
         .tamuragumi-sub {
-            font-size: 11px;
+            font-size: 14px; /* 11px -> 14px に拡大 */
             color: #555;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             font-weight: bold;
         }
         
-        /* 📦 各プロジェクトを区切るブロック */
+        /* 各プロジェクトを区切るブロック */
         .project-section {
-            margin-bottom: 45px; /* プロジェクト間の余白 */
+            margin-bottom: 60px; /* 余白を広げてメリハリを強化 */
             padding-bottom: 10px;
         }
         
-        /* 🖍️ プロジェクトの区切りタイトル（黒マジックの手書き風） */
+        /* プロジェクトの区切りタイトル（文字サイズと余白を拡大） */
         .project-divider-title {
-            font-size: 20px;
+            font-size: 24px; /* 20px -> 24px に拡大 */
             font-weight: bold;
             color: #111;
             letter-spacing: 2px;
-            margin-bottom: 15px;
-            padding: 5px 10px;
-            background-color: #e2e8eb; /* うっすらグレーの背景で目立たせる */
-            border-left: 6px solid #111; /* 左側に黒の太い縦線 */
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            background-color: #e2e8eb;
+            border-left: 8px solid #111; /* 縦線を太く */
             border-bottom: 1px solid #111;
         }
         
-        /* トラック行の設定 */
+        /* トラック行の設定（縦のスペースを広く） */
         .track-row {
             display: flex;
+            flex-direction: column; /* スマホやプレイヤー配置を考慮して縦並び要素を整理 */
+            gap: 12px;
+            border-bottom: 2px dashed #b5bfc4; /* 点線を太く見やすく */
+            padding: 25px 5px;
+        }
+        .track-row-upper {
+            display: flex;
             align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px dashed #b5bfc4; /* マーカーの手書き点線風 */
-            padding: 18px 5px;
+            justify-content: space-between; /* 上段で曲名とDLボタンを左右に配置 */
+            width: 100%;
         }
         .track-row:last-of-type {
-            border-bottom: 3px double #888; /* 各プロジェクトの最後の行は二重線で区切り */
+            border-bottom: 4px double #888; /* 二重線を太く */
         }
         
-        /* 左側の情報エリア（トラック名と青札） */
+        /* 左側の情報エリア */
         .track-info-area {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
         .track-num {
-            font-size: 14px;
+            font-size: 18px; /* 14px -> 18px に拡大 */
             font-weight: bold;
-            color: #333;
-            width: 75px;
+            color: #111;
+            width: 90px;
             flex-shrink: 0;
         }
         
-        /* 青いマグネット名札（文字色は黒） */
+        /* 青いマグネット名札（サイズを大きく・黒文字をより太く） */
         .blue-magnet-tag {
             background: linear-gradient(135deg, #005bac, #004488);
             color: #000000 !important;
-            font-size: 13px;
+            font-size: 18px; /* 13px -> 18px に拡大 */
             font-weight: 900;
-            padding: 6px 16px;
-            border-radius: 3px;
-            box-shadow: 1px 2px 3px rgba(0,0,0,0.3);
-            border-left: 3px solid #002244;
+            padding: 8px 22px; /* 札をひと回り大きく */
+            border-radius: 4px;
+            box-shadow: 2px 3px 5px rgba(0,0,0,0.3);
+            border-left: 4px solid #002244;
             letter-spacing: 1px;
             display: inline-block;
-            text-shadow: 0px 1px 0px rgba(255,255,255,0.3);
+            text-shadow: 0px 1px 0px rgba(255,255,255,0.4);
         }
         
-        /* マーカーで書いたようなダウンロードボタン（赤マジック風） */
+        /* 再生プレイヤーの設置エリア */
+        .audio-player-zone {
+            width: 100%;
+            margin-top: 5px;
+        }
+        audio {
+            width: 100%; /* 横幅いっぱいにプレイヤーを表示 */
+            height: 40px;
+            outline: none;
+        }
+        
+        /* マーカーで書いたようなダウンロードボタン（サイズを拡大） */
         .board-download-btn {
             background-color: transparent;
             color: #ff3333;
-            border: 2px solid #ff3333;
+            border: 3px solid #ff3333; /* 枠線を太く */
             font-weight: bold;
-            font-size: 12px;
-            padding: 5px 14px;
-            border-radius: 4px;
+            font-size: 15px; /* 12px -> 15px に拡大 */
+            padding: 6px 18px;
+            border-radius: 5px;
             text-decoration: none !important;
             transition: all 0.2s;
             letter-spacing: 1px;
+            flex-shrink: 0;
         }
         .board-download-btn:hover {
             background-color: #ff3333;
@@ -141,9 +159,9 @@
         /* ボードの下部（足元） */
         .board-footer {
             text-align: center;
-            padding-top: 30px;
-            font-size: 11px;
-            color: #888;
+            padding-top: 50px;
+            font-size: 14px; /* 11px -> 14px に拡大 */
+            color: #666;
         }
     </style>
 </head>
@@ -157,7 +175,7 @@
         <!-- ボードの最上部ヘッダータイトル -->
         <div class="board-header">
             <h1>VanSideVibes</h1>
-            <div class="tamuragumi-sub">RIDDIM ARCHIVE &amp; DOWNLOAD LIST</div>
+            <div class="tamuragumi-sub">RIDDIM ARCHIVE &amp; PLAYER LIST</div>
         </div>
         
         
@@ -167,29 +185,45 @@
             
             <!-- 1曲目 -->
             <div class="track-row">
-                <div class="track-info-area">
-                    <div class="track-num">TRACK 1：</div>
-                    <div class="blue-magnet-tag">曲名A</div>
+                <div class="track-row-upper">
+                    <div class="track-info-area">
+                        <div class="track-num">TRACK 1：</div>
+                        <div class="blue-magnet-tag">曲名A</div>
+                    </div>
+                    <a href="audio/p1_track1.mp3" download="p1_track1.mp3" class="board-download-btn">DOWNLOAD</a>
                 </div>
-                <a href="audio/p1_track1.mp3" download="p1_track1.mp3" class="board-download-btn">DOWNLOAD</a>
+                <!-- 🎵 音源再生プレイヤー -->
+                <div class="audio-player-zone">
+                    <audio src="audio/p1_track1.mp3" controls preload="none"></audio>
+                </div>
             </div>
             
             <!-- 2曲目 -->
             <div class="track-row">
-                <div class="track-info-area">
-                    <div class="track-num">TRACK 2：</div>
-                    <div class="blue-magnet-tag">曲名B</div>
+                <div class="track-row-upper">
+                    <div class="track-info-area">
+                        <div class="track-num">TRACK 2：</div>
+                        <div class="blue-magnet-tag">曲名B</div>
+                    </div>
+                    <a href="audio/p1_track2.mp3" download="p1_track2.mp3" class="board-download-btn">DOWNLOAD</a>
                 </div>
-                <a href="audio/p1_track2.mp3" download="p1_track2.mp3" class="board-download-btn">DOWNLOAD</a>
+                <div class="audio-player-zone">
+                    <audio src="audio/p1_track2.mp3" controls preload="none"></audio>
+                </div>
             </div>
             
             <!-- 3曲目 -->
             <div class="track-row">
-                <div class="track-info-area">
-                    <div class="track-num">TRACK 3：</div>
-                    <div class="blue-magnet-tag">曲名C</div>
+                <div class="track-row-upper">
+                    <div class="track-info-area">
+                        <div class="track-num">TRACK 3：</div>
+                        <div class="blue-magnet-tag">曲名C</div>
+                    </div>
+                    <a href="audio/p1_track3.mp3" download="p1_track3.mp3" class="board-download-btn">DOWNLOAD</a>
                 </div>
-                <a href="audio/p1_track3.mp3" download="p1_track3.mp3" class="board-download-btn">DOWNLOAD</a>
+                <div class="audio-player-zone">
+                    <audio src="audio/p1_track3.mp3" controls preload="none"></audio>
+                </div>
             </div>
         </div>
 
@@ -200,29 +234,44 @@
             
             <!-- 1曲目 -->
             <div class="track-row">
-                <div class="track-info-area">
-                    <div class="track-num">TRACK 1：</div>
-                    <div class="blue-magnet-tag">曲名D</div>
+                <div class="track-row-upper">
+                    <div class="track-info-area">
+                        <div class="track-num">TRACK 1：</div>
+                        <div class="blue-magnet-tag">曲名D</div>
+                    </div>
+                    <a href="audio/p2_track1.mp3" download="p2_track1.mp3" class="board-download-btn">DOWNLOAD</a>
                 </div>
-                <a href="audio/p2_track1.mp3" download="p2_track1.mp3" class="board-download-btn">DOWNLOAD</a>
+                <div class="audio-player-zone">
+                    <audio src="audio/p2_track1.mp3" controls preload="none"></audio>
+                </div>
             </div>
             
             <!-- 2曲目 -->
             <div class="track-row">
-                <div class="track-info-area">
-                    <div class="track-num">TRACK 2：</div>
-                    <div class="blue-magnet-tag">曲名E</div>
+                <div class="track-row-upper">
+                    <div class="track-info-area">
+                        <div class="track-num">TRACK 2：</div>
+                        <div class="blue-magnet-tag">曲名E</div>
+                    </div>
+                    <a href="audio/p2_track2.mp3" download="p2_track2.mp3" class="board-download-btn">DOWNLOAD</a>
                 </div>
-                <a href="audio/p2_track2.mp3" download="p2_track2.mp3" class="board-download-btn">DOWNLOAD</a>
+                <div class="audio-player-zone">
+                    <audio src="audio/p2_track2.mp3" controls preload="none"></audio>
+                </div>
             </div>
             
             <!-- 3曲目 -->
             <div class="track-row">
-                <div class="track-info-area">
-                    <div class="track-num">TRACK 3：</div>
-                    <div class="blue-magnet-tag">曲名F</div>
+                <div class="track-row-upper">
+                    <div class="track-info-area">
+                        <div class="track-num">TRACK 3：</div>
+                        <div class="blue-magnet-tag">曲名F</div>
+                    </div>
+                    <a href="audio/p2_track3.mp3" download="p2_track3.mp3" class="board-download-btn">DOWNLOAD</a>
                 </div>
-                <a href="audio/p2_track3.mp3" download="p2_track3.mp3" class="board-download-btn">DOWNLOAD</a>
+                <div class="audio-player-zone">
+                    <audio src="audio/p2_track3.mp3" controls preload="none"></audio>
+                </div>
             </div>
         </div>
 
@@ -233,29 +282,44 @@
             
             <!-- 1曲目 -->
             <div class="track-row">
-                <div class="track-info-area">
-                    <div class="track-num">TRACK 1：</div>
-                    <div class="blue-magnet-tag">曲名G</div>
+                <div class="track-row-upper">
+                    <div class="track-info-area">
+                        <div class="track-num">TRACK 1：</div>
+                        <div class="blue-magnet-tag">曲名G</div>
+                    </div>
+                    <a href="audio/p3_track1.mp3" download="p3_track1.mp3" class="board-download-btn">DOWNLOAD</a>
                 </div>
-                <a href="audio/p3_track1.mp3" download="p3_track1.mp3" class="board-download-btn">DOWNLOAD</a>
+                <div class="audio-player-zone">
+                    <audio src="audio/p3_track1.mp3" controls preload="none"></audio>
+                </div>
             </div>
             
             <!-- 2曲目 -->
             <div class="track-row">
-                <div class="track-info-area">
-                    <div class="track-num">TRACK 2：</div>
-                    <div class="blue-magnet-tag">曲名H</div>
+                <div class="track-row-upper">
+                    <div class="track-info-area">
+                        <div class="track-num">TRACK 2：</div>
+                        <div class="blue-magnet-tag">曲名H</div>
+                    </div>
+                    <a href="audio/p3_track2.mp3" download="p3_track2.mp3" class="board-download-btn">DOWNLOAD</a>
                 </div>
-                <a href="audio/p3_track2.mp3" download="p3_track2.mp3" class="board-download-btn">DOWNLOAD</a>
+                <div class="audio-player-zone">
+                    <audio src="audio/p3_track2.mp3" controls preload="none"></audio>
+                </div>
             </div>
             
             <!-- 3曲目 -->
             <div class="track-row">
-                <div class="track-info-area">
-                    <div class="track-num">TRACK 3：</div>
-                    <div class="blue-magnet-tag">曲名I</div>
+                <div class="track-row-upper">
+                    <div class="track-info-area">
+                        <div class="track-num">TRACK 3：</div>
+                        <div class="blue-magnet-tag">曲名I</div>
+                    </div>
+                    <a href="audio/p3_track3.mp3" download="p3_track3.mp3" class="board-download-btn">DOWNLOAD</a>
                 </div>
-                <a href="audio/p3_track3.mp3" download="p3_track3.mp3" class="board-download-btn">DOWNLOAD</a>
+                <div class="audio-player-zone">
+                    <audio src="audio/p3_track3.mp3" controls preload="none"></audio>
+                </div>
             </div>
         </div>
 

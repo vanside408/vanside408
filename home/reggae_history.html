@@ -14,7 +14,7 @@
     <!-- BootstrapのJS読み込み -->
     <script src="js/bootstrap.min.js"></script>	
     
-    <!-- 画面全体ホワイトボード化・音源再生プレイヤー付きカスタムCSS -->
+    <!-- カスタムCSS -->
     <style>
         /* 画面全体をホワイトボードの白に統一 */
         body {
@@ -25,7 +25,7 @@
             margin: 0;
         }
         
-        /* 全体を囲むアルミフレーム枠（画面の縁：15pxに太くして存在感をアップ） */
+        /* 全体を囲むアルミフレーム枠 */
         .whiteboard-frame {
             border: 15px solid #b0b8bc;
             min-height: 100vh;
@@ -33,16 +33,16 @@
             box-sizing: border-box;
         }
         
-        /* 全体的に大きく表示するために最大幅を750pxに拡大 */
+        /* 全体の最大幅 */
         .whiteboard-content {
             max-width: 750px;
             margin: 0 auto;
         }
         
-        /* ボードの最上部ヘッダータイトル（文字サイズを大きく） */
+        /* 最上部ヘッダータイトル */
         .board-header {
             text-align: center;
-            border-bottom: 5px solid #111; /* マジック線を太く */
+            border-bottom: 5px solid #111;
             padding-bottom: 20px;
             margin-bottom: 40px;
         }
@@ -111,19 +111,37 @@
             flex-shrink: 0;
         }
         
-        /* 青いマグネット名札（文字色は黒） */
-        .blue-magnet-tag {
+        /* 🖍️ 曲名（背景なし・直書き手書き風） */
+        .track-name-plain {
+            font-size: 20px;
+            font-weight: bold;
+            color: #111;
+            letter-spacing: 1px;
+        }
+        
+        /* 🟦 青いマグネット名札型のダウンロードボタン（文字色は黒） */
+        .blue-magnet-btn {
             background: linear-gradient(135deg, #005bac, #004488);
-            color: #000000 !important;
-            font-size: 18px;
+            color: #000000 !important; /* 中の文字は黒 */
+            font-size: 15px;
             font-weight: 900;
-            padding: 8px 22px;
+            padding: 10px 20px; /* ボタンとして押し切りやすいサイズ */
             border-radius: 4px;
             box-shadow: 2px 3px 5px rgba(0,0,0,0.3);
             border-left: 4px solid #002244;
             letter-spacing: 1px;
+            text-decoration: none !important;
             display: inline-block;
             text-shadow: 0px 1px 0px rgba(255,255,255,0.4);
+            transition: transform 0.1s, box-shadow 0.1s;
+            flex-shrink: 0;
+            text-align: center;
+            min-width: 130px; /* ボタンの横幅を固定して綺麗に揃える */
+        }
+        /* マグネットボタンを押したときの軽いクリック感 */
+        .blue-magnet-btn:active {
+            transform: translateY(2px);
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
         
         /* 再生プレイヤーの設置エリア */
@@ -135,25 +153,6 @@
             width: 100%;
             height: 40px;
             outline: none;
-        }
-        
-        /* マーカーで書いたようなダウンロードボタン */
-        .board-download-btn {
-            background-color: transparent;
-            color: #ff3333;
-            border: 3px solid #ff3333;
-            font-weight: bold;
-            font-size: 15px;
-            padding: 6px 18px;
-            border-radius: 5px;
-            text-decoration: none !important;
-            transition: all 0.2s;
-            letter-spacing: 1px;
-            flex-shrink: 0;
-        }
-        .board-download-btn:hover {
-            background-color: #ff3333;
-            color: #ffffff !important;
         }
         
         /* ボードの下部（足元） */
@@ -183,15 +182,16 @@
         <div class="project-section">
             <div class="project-divider-title">■ PROJECT 1</div>
             
-            <!-- 1曲目（ここに指定の音源を紐付けました） -->
+            <!-- 1曲目 -->
             <div class="track-row">
                 <div class="track-row-upper">
                     <div class="track-info-area">
                         <div class="track-num">TRACK 1：</div>
-                        <!-- 青札の中の曲名はお好みで変更してください -->
-                        <div class="blue-magnet-tag">BLUELIGHT RIDDIM</div>
+                        <!-- 曲名は背景なしの黒文字 -->
+                        <div class="track-name-plain">BLUELIGHT RIDDIM</div>
                     </div>
-                    <a href="ns_audio/176_bluelightriddim.mp3" download="176_bluelightriddim.mp3" class="board-download-btn">DOWNLOAD</a>
+                    <!-- ダウンロードボタン自体が青札（黒文字） -->
+                    <a href="ns_audio/176_bluelightriddim.mp3" download="176_bluelightriddim.mp3" class="blue-magnet-btn">DOWNLOAD</a>
                 </div>
                 <!-- 🎵 音源再生プレイヤー -->
                 <div class="audio-player-zone">
@@ -199,31 +199,17 @@
                 </div>
             </div>
             
-            <!-- 2曲目（テスト用ダミー） -->
+            <!-- 2曲目（サンプル） -->
             <div class="track-row">
                 <div class="track-row-upper">
                     <div class="track-info-area">
                         <div class="track-num">TRACK 2：</div>
-                        <div class="blue-magnet-tag">曲名B</div>
+                        <div class="track-name-plain">サンプル曲名B</div>
                     </div>
-                    <a href="ns_audio/p1_track2.mp3" download="p1_track2.mp3" class="board-download-btn">DOWNLOAD</a>
+                    <a href="ns_audio/p1_track2.mp3" download="p1_track2.mp3" class="blue-magnet-btn">DOWNLOAD</a>
                 </div>
                 <div class="audio-player-zone">
                     <audio src="ns_audio/p1_track2.mp3" controls preload="none"></audio>
-                </div>
-            </div>
-            
-            <!-- 3曲目（テスト用ダミー） -->
-            <div class="track-row">
-                <div class="track-row-upper">
-                    <div class="track-info-area">
-                        <div class="track-num">TRACK 3：</div>
-                        <div class="blue-magnet-tag">曲名C</div>
-                    </div>
-                    <a href="ns_audio/p1_track3.mp3" download="p1_track3.mp3" class="board-download-btn">DOWNLOAD</a>
-                </div>
-                <div class="audio-player-zone">
-                    <audio src="ns_audio/p1_track3.mp3" controls preload="none"></audio>
                 </div>
             </div>
         </div>
@@ -233,14 +219,14 @@
         <div class="project-section">
             <div class="project-divider-title">■ PROJECT 2</div>
             
-            <!-- 1曲目 -->
+            <!-- 1曲目（サンプル） -->
             <div class="track-row">
                 <div class="track-row-upper">
                     <div class="track-info-area">
                         <div class="track-num">TRACK 1：</div>
-                        <div class="blue-magnet-tag">曲名D</div>
+                        <div class="track-name-plain">サンプル曲名C</div>
                     </div>
-                    <a href="ns_audio/p2_track1.mp3" download="p2_track1.mp3" class="board-download-btn">DOWNLOAD</a>
+                    <a href="ns_audio/p2_track1.mp3" download="p2_track1.mp3" class="blue-magnet-btn">DOWNLOAD</a>
                 </div>
                 <div class="audio-player-zone">
                     <audio src="ns_audio/p2_track1.mp3" controls preload="none"></audio>

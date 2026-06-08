@@ -6,15 +6,11 @@
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- BootstrapのCSS読み込み -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <!-- jQuery読み込み -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- BootstrapのJS読み込み -->
     <script src="js/bootstrap.min.js"></script>	
     
-    <!-- カスタムCSS -->
     <style>
         /* 画面全体をホワイトボードの白に統一 */
         body {
@@ -111,7 +107,7 @@
             flex-shrink: 0;
         }
         
-        /* 🖍️ 曲名（背景なし・直書き手書き風） */
+        /* 曲名（背景なし・直書き手書き風） */
         .track-name-plain {
             font-size: 20px;
             font-weight: bold;
@@ -119,13 +115,13 @@
             letter-spacing: 1px;
         }
         
-        /* 🟦 青いマグネット名札型のダウンロードボタン（文字色は黒） */
+        /* 青いマグネット名札型のダウンロードボタン（文字色は黒） */
         .blue-magnet-btn {
             background: linear-gradient(135deg, #005bac, #004488);
-            color: #000000 !important; /* 中の文字は黒 */
+            color: #000000 !important;
             font-size: 15px;
             font-weight: 900;
-            padding: 10px 20px; /* ボタンとして押し切りやすいサイズ */
+            padding: 10px 20px;
             border-radius: 4px;
             box-shadow: 2px 3px 5px rgba(0,0,0,0.3);
             border-left: 4px solid #002244;
@@ -138,7 +134,6 @@
             text-align: center;
             min-width: 130px; /* ボタンの横幅を固定して綺麗に揃える */
         }
-        /* マグネットボタンを押したときの軽いクリック感 */
         .blue-magnet-btn:active {
             transform: translateY(2px);
             box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
@@ -167,60 +162,59 @@
 
 <body>
 
-<!-- 📋 画面全体のアルミ枠 -->
 <div class="whiteboard-frame">
     <div class="whiteboard-content">
 
-        <!-- ボードの最上部ヘッダータイトル -->
         <div class="board-header">
             <h1>VanSideVibes</h1>
             <div class="tamuragumi-sub">RIDDIM ARCHIVE &amp; PLAYER LIST</div>
         </div>
         
         
-        <!-- ─── PROJECT 1 ブロック ─── -->
         <div class="project-section">
             <div class="project-divider-title">■ PROJECT 1</div>
             
-            <!-- 1曲目 -->
             <div class="track-row">
                 <div class="track-row-upper">
                     <div class="track-info-area">
                         <div class="track-num">TRACK 1：</div>
-                        <!-- 曲名は背景なしの黒文字 -->
                         <div class="track-name-plain">BLUELIGHT RIDDIM</div>
                     </div>
-                    <!-- ダウンロードボタン自体が青札（黒文字） -->
                     <a href="ns_audio/176_bluelightriddim.mp3" download="176_bluelightriddim.mp3" class="blue-magnet-btn">DOWNLOAD</a>
                 </div>
-                <!-- 🎵 音源再生プレイヤー -->
                 <div class="audio-player-zone">
                     <audio src="ns_audio/176_bluelightriddim.mp3" controls preload="none"></audio>
                 </div>
             </div>
             
-            <!-- 2曲目（ここに新しい音源を紐付けました） -->
             <div class="track-row">
                 <div class="track-row-upper">
                     <div class="track-info-area">
                         <div class="track-num">TRACK 2：</div>
-                        <!-- ボード上の曲表記（お好みで変更してください） -->
                         <div class="track-name-plain">PORT AUGUST</div>
                     </div>
                     <a href="ns_audio/reg5_portaugust.mp3" download="reg5_portaugust.mp3" class="blue-magnet-btn">DOWNLOAD</a>
                 </div>
-                <!-- 🎵 音源再生プレイヤー -->
                 <div class="audio-player-zone">
                     <audio src="ns_audio/reg5_portaugust.mp3" controls preload="none"></audio>
+                </div>
+            </div>
+            
+            <div class="track-row">
+                <div class="track-row-upper">
+                    <div class="track-info-area">
+                        <div class="track-num">TRACK 3：</div>
+                        <div class="track-name-plain">RAFF 01</div>
+                    </div>
+                    <a href="ns_audio/reggae7_raff01.mp3" download="reggae7_raff01.mp3" class="blue-magnet-btn">DOWNLOAD</a>
+                </div>
+                <div class="audio-player-zone">
+                    <audio src="ns_audio/reggae7_raff01.mp3" controls preload="none"></audio>
                 </div>
             </div>
         </div>
 
 
-        
-
-
-        <!-- ボード最下部 -->
         <div class="board-footer">
             <p>TAMURAGUMI &copy; VanSideVibes All Rights Reserved.</p>
         </div>

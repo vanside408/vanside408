@@ -115,7 +115,7 @@
             letter-spacing: 1px;
         }
         
-        /* 青いマグネット名札型のダウンロードボタン（文字色は黒） */
+        /* 🟦 青いマグネット名札型のダウンロードボタン（文字色は黒） */
         .blue-magnet-btn {
             background: linear-gradient(135deg, #005bac, #004488);
             color: #000000 !important;
@@ -132,9 +132,33 @@
             transition: transform 0.1s, box-shadow 0.1s;
             flex-shrink: 0;
             text-align: center;
-            min-width: 130px; /* ボタンの横幅を固定して綺麗に揃える */
+            min-width: 130px;
         }
         .blue-magnet-btn:active {
+            transform: translateY(2px);
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* 🟩 緑のマグネット名札型のダウンロードボタン（文字色は黒） */
+        .green-magnet-btn {
+            background: linear-gradient(135deg, #009944, #007733);
+            color: #000000 !important;
+            font-size: 15px;
+            font-weight: 900;
+            padding: 10px 20px;
+            border-radius: 4px;
+            box-shadow: 2px 3px 5px rgba(0,0,0,0.3);
+            border-left: 4px solid #004411;
+            letter-spacing: 1px;
+            text-decoration: none !important;
+            display: inline-block;
+            text-shadow: 0px 1px 0px rgba(255,255,255,0.4);
+            transition: transform 0.1s, box-shadow 0.1s;
+            flex-shrink: 0;
+            text-align: center;
+            min-width: 130px;
+        }
+        .green-magnet-btn:active {
             transform: translateY(2px);
             box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
@@ -180,10 +204,10 @@
                         <div class="track-num">TRACK 1：</div>
                         <div class="track-name-plain">BLUELIGHT RIDDIM</div>
                     </div>
-                    <a href="ns_audio/BlueLightRiddim_20260621.mp3" download="BlueLightRiddim_20260621.mp3" class="blue-magnet-btn">DOWNLOAD</a>
+                    <a href="ns_audio/176_bluelightriddim.mp3" download="176_bluelightriddim.mp3" class="blue-magnet-btn">DOWNLOAD</a>
                 </div>
                 <div class="audio-player-zone">
-                    <audio src="ns_audio/BlueLightRiddim_20260621.mp3" controls preload="none"></audio>
+                    <audio src="ns_audio/176_bluelightriddim.mp3" controls preload="none"></audio>
                 </div>
             </div>
             
@@ -204,21 +228,20 @@
                 <div class="track-row-upper">
                     <div class="track-info-area">
                         <div class="track-num">TRACK 3：</div>
-                        <div class="track-name-plain">11:00 AM Riddim</div>
+                        <div class="track-name-plain">RAFF 01</div>
                     </div>
-                    <a href="ns_audio/1100AMRiddim_20260625.mp3" download="1100AMRiddim_20260625.mp3" class="blue-magnet-btn">DOWNLOAD</a>
+                    <a href="ns_audio/reggae7_raff01.mp3" download="reggae7_raff01.mp3" class="blue-magnet-btn">DOWNLOAD</a>
                 </div>
                 <div class="audio-player-zone">
-                    <audio src="ns_audio/1100AMRiddim_20260625.mp3" controls preload="none"></audio>
+                    <audio src="ns_audio/reggae7_raff01.mp3" controls preload="none"></audio>
                 </div>
             </div>
-        
 
-			<div class="track-row">
+            <div class="track-row">
                 <div class="track-row-upper">
                     <div class="track-info-area">
-                        <div class="track-num">TRACK 1：</div>
-                        <div class="track-name-plain">SultryCity RIDDIM</div>
+                        <div class="track-num">TRACK 4：</div>
+                        <div class="track-name-plain">Sultry City</div>
                     </div>
                     <a href="ns_audio/SultryCity.mp3" download="SultryCity.mp3" class="blue-magnet-btn">DOWNLOAD</a>
                 </div>
@@ -226,9 +249,28 @@
                     <audio src="ns_audio/SultryCity.mp3" controls preload="none"></audio>
                 </div>
             </div>
-		</div>
+        </div>
 
-		<div class="board-footer">
+
+        <div class="project-section">
+            <div class="project-divider-title">■ REMAKE ARCHIVE</div>
+            
+            <div class="track-row">
+                <div class="track-row-upper">
+                    <div class="track-info-area">
+                        <div class="track-num">TRACK 1：</div>
+                        <div class="track-name-plain">Sleng Teng Riddim</div>
+                    </div>
+                    <a href="ns_audio/SlengTengRiddim_20260621.mp3" download="SlengTengRiddim_20260621.mp3" class="green-magnet-btn">DOWNLOAD</a>
+                </div>
+                <div class="audio-player-zone">
+                    <audio src="ns_audio/SlengTengRiddim_20260621.mp3" controls preload="none"></audio>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="board-footer">
             <p>TAMURAGUMI &copy; VanSideVibes All Rights Reserved.</p>
         </div>
 

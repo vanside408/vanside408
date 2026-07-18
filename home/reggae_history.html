@@ -6,13 +6,9 @@
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>	
     
     <style>
-        /* 画面全体をホワイトボードの白に統一 */
+        /* 外部ファイルに依存せず、画面全体をホワイトボードの白に統一 */
         body {
             background-color: #f7f9fa !important;
             color: #000000 !important;
@@ -107,7 +103,7 @@
             flex-shrink: 0;
         }
         
-        /* 曲名（背景なし・直書き手書き風） */
+        /* 曲名 */
         .track-name-plain {
             font-size: 20px;
             font-weight: bold;
@@ -189,15 +185,17 @@
 <div class="whiteboard-frame">
     <div class="whiteboard-content">
 
+        <!-- ヘッダーエリア -->
         <div class="board-header">
             <h1>VanSideVibes</h1>
             <div class="tamuragumi-sub">RIDDIM ARCHIVE &amp; PLAYER LIST</div>
         </div>
         
-        
+        <!-- PROJECT 1 セクション -->
         <div class="project-section">
             <div class="project-divider-title">■ PROJECT 1</div>
             
+            <!-- TRACK 1 -->
             <div class="track-row">
                 <div class="track-row-upper">
                     <div class="track-info-area">
@@ -211,6 +209,7 @@
                 </div>
             </div>
             
+            <!-- TRACK 2 -->
             <div class="track-row">
                 <div class="track-row-upper">
                     <div class="track-info-area">
@@ -224,19 +223,21 @@
                 </div>
             </div>
             
+            <!-- TRACK 3 -->
             <div class="track-row">
                 <div class="track-row-upper">
                     <div class="track-info-area">
                         <div class="track-num">TRACK 3：</div>
                         <div class="track-name-plain">1100 AM Riddim</div>
                     </div>
-                    <a href="ns_audio/1100AMRiddim_20260625.mp3" download="1100AMRiddim_20260625.mp3.mp3" class="blue-magnet-btn">DOWNLOAD</a>
+                    <a href="ns_audio/1100AMRiddim_20260625.mp3" download="1100AMRiddim_20260625.mp3" class="blue-magnet-btn">DOWNLOAD</a>
                 </div>
                 <div class="audio-player-zone">
                     <audio src="ns_audio/1100AMRiddim_20260625.mp3" controls preload="none"></audio>
                 </div>
             </div>
 
+            <!-- TRACK 4 -->
             <div class="track-row">
                 <div class="track-row-upper">
                     <div class="track-info-area">
@@ -251,11 +252,12 @@
             </div>
         </div>
 
-
+        <!-- REMAKE ARCHIVE セクション -->
         <div class="project-section">
             <div class="project-divider-title">■ REMAKE ARCHIVE</div>
 
-			<div class="track-row">
+            <!-- TRACK 1 -->
+            <div class="track-row">
                 <div class="track-row-upper">
                     <div class="track-info-area">
                         <div class="track-num">TRACK 1：</div>
@@ -268,7 +270,8 @@
                 </div>
             </div>
 
-			<div class="track-row">
+            <!-- TRACK 2 -->
+            <div class="track-row">
                 <div class="track-row-upper">
                     <div class="track-info-area">
                         <div class="track-num">TRACK 2：</div>
@@ -280,7 +283,8 @@
                     <audio src="ns_audio/NewCapturRiddim_20260621.mp3" controls preload="none"></audio>
                 </div>
             </div>
-			
+            
+            <!-- TRACK 3 -->
             <div class="track-row">
                 <div class="track-row-upper">
                     <div class="track-info-area">
@@ -294,7 +298,8 @@
                 </div>
             </div>
 
-			<div class="track-row">
+            <!-- TRACK 4 -->
+            <div class="track-row">
                 <div class="track-row-upper">
                     <div class="track-info-area">
                         <div class="track-num">TRACK 4：</div>
@@ -307,7 +312,8 @@
                 </div>
             </div>
 
-			<div class="track-row">
+            <!-- TRACK 5 -->
+            <div class="track-row">
                 <div class="track-row-upper">
                     <div class="track-info-area">
                         <div class="track-num">TRACK 5：</div>
@@ -319,11 +325,9 @@
                     <audio src="ns_audio/IoneLionZionRiddim_20260621.mp3" controls preload="none"></audio>
                 </div>
             </div>
-			
-            </div>
         </div>
 
-
+        <!-- フッターエリア -->
         <div class="board-footer">
             <p>TAMURAGUMI &copy; VanSideVibes All Rights Reserved.</p>
         </div>

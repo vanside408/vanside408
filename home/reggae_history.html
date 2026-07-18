@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <style>
-        /* 外部ファイルに依存せず、画面全体をホワイトボードの白に統一 */
+        /* 画面全体をホワイトボードの白に統一 */
         body {
             background-color: #f7f9fa !important;
             color: #000000 !important;
@@ -75,9 +75,9 @@
         .track-row {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 15px;
             border-bottom: 2px dashed #b5bfc4;
-            padding: 25px 5px;
+            padding: 30px 5px;
         }
         .track-row-upper {
             display: flex;
@@ -111,7 +111,7 @@
             letter-spacing: 1px;
         }
         
-        /* 🟦 青いマグネット名札型のダウンロードボタン（文字色は黒） */
+        /* 🟦 青いマグネット名札型のダウンロードボタン */
         .blue-magnet-btn {
             background: linear-gradient(135deg, #005bac, #004488);
             color: #000000 !important;
@@ -135,7 +135,7 @@
             box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
-        /* 🟩 緑のマグネット名札型のダウンロードボタン（文字色は黒） */
+        /* 🟩 緑のマグネット名札型のダウンロードボタン */
         .green-magnet-btn {
             background: linear-gradient(135deg, #009944, #007733);
             color: #000000 !important;
@@ -159,15 +159,61 @@
             box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
         
-        /* 再生プレイヤーの設置エリア */
-        .audio-player-zone {
+        /* 🛠️ 【新設】オリジナル特大プレイヤー枠 */
+        .custom-player-zone {
             width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: #ffffff;
+            padding: 15px;
+            border: 3px solid #111;
+            border-radius: 8px;
+            box-sizing: border-box;
             margin-top: 5px;
         }
-        audio {
-            width: 100%;
-            height: 40px;
-            outline: none;
+
+        /* 🔴 超特大の再生ボタン */
+        .big-play-btn {
+            width: 80px;
+            height: 80px;
+            background-color: #111111;
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            cursor: pointer;
+            flex-shrink: 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            padding: 0;
+            line-height: 1;
+        }
+        /* 再生中（一時停止マーク）のときの背景色 */
+        .big-play-btn.playing {
+            background-color: #d9534f;
+        }
+
+        /* 太くて見やすいシークバー（ダミー） */
+        .custom-seeker {
+            flex-grow: 1;
+            height: 14px;
+            background-color: #e2e8eb;
+            border-radius: 7px;
+            position: relative;
+            border: 1px solid #b0b8bc;
+        }
+        .custom-progress {
+            width: 0%; /* 初期値は0% */
+            height: 100%;
+            background-color: #111111;
+            border-radius: 7px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: width 0.2s;
         }
         
         /* ボードの下部（足元） */
@@ -204,8 +250,9 @@
                     </div>
                     <a href="ns_audio/BlueLightRiddim_20260621.mp3" download="BlueLightRiddim_20260621.mp3" class="blue-magnet-btn">DOWNLOAD</a>
                 </div>
-                <div class="audio-player-zone">
-                    <audio src="ns_audio/BlueLightRiddim_20260621.mp3" controls preload="none"></audio>
+                <div class="custom-player-zone">
+                    <button class="big-play-btn" onclick="togglePlay(this)">▶</button>
+                    <div class="custom-seeker"><div class="custom-progress"></div></div>
                 </div>
             </div>
             
@@ -218,8 +265,9 @@
                     </div>
                     <a href="ns_audio/reg5_portaugust.mp3" download="reg5_portaugust.mp3" class="blue-magnet-btn">DOWNLOAD</a>
                 </div>
-                <div class="audio-player-zone">
-                    <audio src="ns_audio/reg5_portaugust.mp3" controls preload="none"></audio>
+                <div class="custom-player-zone">
+                    <button class="big-play-btn" onclick="togglePlay(this)">▶</button>
+                    <div class="custom-seeker"><div class="custom-progress"></div></div>
                 </div>
             </div>
             
@@ -232,8 +280,9 @@
                     </div>
                     <a href="ns_audio/1100AMRiddim_20260625.mp3" download="1100AMRiddim_20260625.mp3" class="blue-magnet-btn">DOWNLOAD</a>
                 </div>
-                <div class="audio-player-zone">
-                    <audio src="ns_audio/1100AMRiddim_20260625.mp3" controls preload="none"></audio>
+                <div class="custom-player-zone">
+                    <button class="big-play-btn" onclick="togglePlay(this)">▶</button>
+                    <div class="custom-seeker"><div class="custom-progress"></div></div>
                 </div>
             </div>
 
@@ -246,8 +295,9 @@
                     </div>
                     <a href="ns_audio/SultryCity.mp3" download="SultryCity.mp3" class="blue-magnet-btn">DOWNLOAD</a>
                 </div>
-                <div class="audio-player-zone">
-                    <audio src="ns_audio/SultryCity.mp3" controls preload="none"></audio>
+                <div class="custom-player-zone">
+                    <button class="big-play-btn" onclick="togglePlay(this)">▶</button>
+                    <div class="custom-seeker"><div class="custom-progress"></div></div>
                 </div>
             </div>
         </div>
@@ -265,8 +315,9 @@
                     </div>
                     <a href="ns_audio/KETTE_DRUM_Riddim_Nagamoto_master_20260524.mp3" download="KETTE_DRUM_Riddim_Nagamoto_master_20260524.mp3" class="green-magnet-btn">DOWNLOAD</a>
                 </div>
-                <div class="audio-player-zone">
-                    <audio src="ns_audio/KETTE_DRUM_Riddim_Nagamoto_master_20260524.mp3" controls preload="none"></audio>
+                <div class="custom-player-zone">
+                    <button class="big-play-btn" onclick="togglePlay(this)">▶</button>
+                    <div class="custom-seeker"><div class="custom-progress"></div></div>
                 </div>
             </div>
 
@@ -279,8 +330,9 @@
                     </div>
                     <a href="ns_audio/NewCapturRiddim_20260621.mp3" download="NewCapturRiddim_20260621.mp3" class="green-magnet-btn">DOWNLOAD</a>
                 </div>
-                <div class="audio-player-zone">
-                    <audio src="ns_audio/NewCapturRiddim_20260621.mp3" controls preload="none"></audio>
+                <div class="custom-player-zone">
+                    <button class="big-play-btn" onclick="togglePlay(this)">▶</button>
+                    <div class="custom-seeker"><div class="custom-progress"></div></div>
                 </div>
             </div>
             
@@ -293,8 +345,9 @@
                     </div>
                     <a href="ns_audio/SlengTengRiddim_20260621.mp3" download="SlengTengRiddim_20260621.mp3" class="green-magnet-btn">DOWNLOAD</a>
                 </div>
-                <div class="audio-player-zone">
-                    <audio src="ns_audio/SlengTengRiddim_20260621.mp3" controls preload="none"></audio>
+                <div class="custom-player-zone">
+                    <button class="big-play-btn" onclick="togglePlay(this)">▶</button>
+                    <div class="custom-seeker"><div class="custom-progress"></div></div>
                 </div>
             </div>
 
@@ -307,8 +360,9 @@
                     </div>
                     <a href="ns_audio/Dem Time Deh_remake.mp3" download="Dem Time Deh_remake.mp3" class="green-magnet-btn">DOWNLOAD</a>
                 </div>
-                <div class="audio-player-zone">
-                    <audio src="ns_audio/Dem Time Deh_remake.mp3" controls preload="none"></audio>
+                <div class="custom-player-zone">
+                    <button class="big-play-btn" onclick="togglePlay(this)">▶</button>
+                    <div class="custom-seeker"><div class="custom-progress"></div></div>
                 </div>
             </div>
 
@@ -321,8 +375,9 @@
                     </div>
                     <a href="ns_audio/IoneLionZionRiddim_20260621.mp3" download="IoneLionZionRiddim_20260621.mp3" class="green-magnet-btn">DOWNLOAD</a>
                 </div>
-                <div class="audio-player-zone">
-                    <audio src="ns_audio/IoneLionZionRiddim_20260621.mp3" controls preload="none"></audio>
+                <div class="custom-player-zone">
+                    <button class="big-play-btn" onclick="togglePlay(this)">▶</button>
+                    <div class="custom-seeker"><div class="custom-progress"></div></div>
                 </div>
             </div>
         </div>
@@ -334,6 +389,32 @@
 
     </div>
 </div>
+
+<script>
+// 音を鳴らさず、見た目のデザイン切り替えだけを行う記述です
+function togglePlay(btn) {
+    var progressBar = btn.nextElementSibling.querySelector('.custom-progress');
+    
+    if (btn.classList.contains('playing')) {
+        btn.classList.remove('playing');
+        btn.innerHTML = '▶';
+        progressBar.style.width = '0%';
+    } else {
+        // 他のすべてのボタンとバーを一度リセット
+        var allBtns = document.querySelectorAll('.big-play-btn');
+        allBtns.forEach(function(b) {
+            b.classList.remove('playing');
+            b.innerHTML = '▶';
+            b.nextElementSibling.querySelector('.custom-progress').style.width = '0%';
+        });
+        
+        // 押されたボタンだけを再生中（赤色・一時停止マーク）にする
+        btn.classList.add('playing');
+        btn.innerHTML = '‖';
+        progressBar.style.width = '45%'; // デザイン確認用にバーを少し進める
+    }
+}
+</script>
 
 </body>
 </html>

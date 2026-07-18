@@ -84,6 +84,7 @@
             align-items: center;
             justify-content: space-between;
             width: 100%;
+            gap: 15px;
         }
         .track-row:last-of-type {
             border-bottom: 4px double #888;
@@ -94,6 +95,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            flex-grow: 1;
         }
         .track-num {
             font-size: 18px;
@@ -109,12 +111,13 @@
             font-weight: bold;
             color: #111;
             letter-spacing: 1px;
+            word-break: break-all;
         }
         
         /* 🟦 青いマグネット名札型のダウンロードボタン */
         .blue-magnet-btn {
             background: linear-gradient(135deg, #005bac, #004488);
-            color: #000000 !important;
+            color: #ffffff !important; /* スマホで見やすいように白文字に変更 */
             font-size: 15px;
             font-weight: 900;
             padding: 10px 20px;
@@ -124,12 +127,13 @@
             letter-spacing: 1px;
             text-decoration: none !important;
             display: inline-block;
-            text-shadow: 0px 1px 0px rgba(255,255,255,0.4);
+            text-shadow: 0px -1px 0px rgba(0,0,0,0.4);
             transition: transform 0.1s, box-shadow 0.1s;
             flex-shrink: 0;
             text-align: center;
             min-width: 130px;
             cursor: pointer;
+            box-sizing: border-box;
         }
         .blue-magnet-btn:active {
             transform: translateY(2px);
@@ -139,7 +143,7 @@
         /* 🟩 緑のマグネット名札型のダウンロードボタン */
         .green-magnet-btn {
             background: linear-gradient(135deg, #009944, #007733);
-            color: #000000 !important;
+            color: #ffffff !important; /* スマホで見やすいように白文字に変更 */
             font-size: 15px;
             font-weight: 900;
             padding: 10px 20px;
@@ -149,12 +153,13 @@
             letter-spacing: 1px;
             text-decoration: none !important;
             display: inline-block;
-            text-shadow: 0px 1px 0px rgba(255,255,255,0.4);
+            text-shadow: 0px -1px 0px rgba(0,0,0,0.4);
             transition: transform 0.1s, box-shadow 0.1s;
             flex-shrink: 0;
             text-align: center;
             min-width: 130px;
             cursor: pointer;
+            box-sizing: border-box;
         }
         .green-magnet-btn:active {
             transform: translateY(2px);
@@ -224,6 +229,62 @@
             padding-top: 50px;
             font-size: 14px;
             color: #666;
+        }
+
+        /* 📱 スマホ用レスポンシブ調整（ブレイクポイント768px） */
+        @media screen and (max-width: 768px) {
+            .whiteboard-frame {
+                border: 6px solid #b0b8bc; /* 枠を少し細くして中身の表示幅を確保 */
+                padding: 20px 10px;
+            }
+            .board-header h1 {
+                font-size: 30px;
+                letter-spacing: 4px;
+            }
+            .project-divider-title {
+                font-size: 18px;
+                padding: 6px 12px;
+            }
+            .track-row {
+                padding: 20px 0;
+            }
+            /* 上部エリア（曲名とDLボタン）を縦並びにして、スマホ幅での衝突を防ぐ */
+            .track-row-upper {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            .track-info-area {
+                width: 100%;
+            }
+            .track-num {
+                width: 75px;
+                font-size: 16px;
+            }
+            .track-name-plain {
+                font-size: 18px;
+            }
+            /* マグネットボタンをスマホ時は横いっぱいに綺麗にフィット */
+            .blue-magnet-btn, .green-magnet-btn {
+                width: 100%;
+                min-width: 100%;
+                padding: 12px;
+                font-size: 14px;
+            }
+            /* プレイヤー枠もスマホ向けに隙間を微調整 */
+            .custom-player-zone {
+                padding: 10px;
+                gap: 12px;
+            }
+            /* 再生ボタンをスマホの画面比率に最適な60pxに調整 */
+            .big-play-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 26px;
+            }
+            .custom-seeker {
+                height: 12px;
+            }
         }
     </style>
 </head>
@@ -374,7 +435,7 @@
                 </div>
             </div>
 
-            <!-- TRACK 4 -->
+            <!-- TRACK 4 (ファイル名修正箇所) -->
             <div class="track-row">
                 <div class="track-row-upper">
                     <div class="track-info-area">
@@ -423,7 +484,6 @@
 var currentAudio = null;
 var currentBtn = null;
 
-// 音声再生・一時停止処理
 function togglePlay(btn) {
     var zone = btn.parentElement;
     var audio = zone.querySelector('audio');
@@ -438,7 +498,7 @@ function togglePlay(btn) {
     }
 
     if (audio.paused) {
-        audio.play();
+        audio.play().catch(function(e) { console.log("Playback failed:", e); });
         btn.classList.add('playing');
         btn.innerHTML = '‖';
         currentAudio = audio;
@@ -467,30 +527,31 @@ function togglePlay(btn) {
     }
 }
 
-// シークバーのクリック位置調整
 function seek(event, seeker) {
     var zone = seeker.parentElement;
     var audio = zone.querySelector('audio');
     
     if (audio.duration) {
         var rect = seeker.getBoundingClientRect();
-        var clickX = event.clientX - rect.left;
+        // スマホのタッチイベント（touches）とPCのクリック（clientX）の両方に対応
+        var clientX = event.clientX || (event.touches && event.touches[0].clientX);
+        if(!clientX) return;
+        
+        var clickX = clientX - rect.left;
         var width = rect.width;
-        var percentage = clickX / width;
+        var percentage = Math.max(0, Math.min(1, clickX / width));
         
         audio.currentTime = percentage * audio.duration;
         zone.querySelector('.custom-progress').style.width = (percentage * 100) + '%';
     }
 }
 
-// 【復活】ダウンロードの確認と実行処理
 function confirmDownload(fileUrl, trackName) {
     var result = confirm(trackName + ' をダウンロードしますか？');
     if (result) {
-        // OKを押したときだけ隠しリンクを作成してダウンロードを実行
         var link = document.createElement('a');
         link.href = fileUrl;
-        link.download = fileUrl.split('/').pop(); // ファイル名を取得
+        link.download = fileUrl.split('/').pop();
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

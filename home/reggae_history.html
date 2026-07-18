@@ -159,7 +159,7 @@
             box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
         
-        /* 🛠️ 【新設】オリジナル特大プレイヤー枠 */
+        /* オリジナル特大プレイヤー枠 */
         .custom-player-zone {
             width: 100%;
             display: flex;
@@ -173,7 +173,7 @@
             margin-top: 5px;
         }
 
-        /* 🔴 超特大の再生ボタン */
+        /* 超特大の再生ボタン */
         .big-play-btn {
             width: 80px;
             height: 80px;
@@ -196,7 +196,7 @@
             background-color: #d9534f;
         }
 
-        /* 太くて見やすいシークバー（ダミー） */
+        /* 太くて見やすい本物のシークバー */
         .custom-seeker {
             flex-grow: 1;
             height: 14px;
@@ -204,16 +204,17 @@
             border-radius: 7px;
             position: relative;
             border: 1px solid #b0b8bc;
+            cursor: pointer;
+            overflow: hidden;
         }
         .custom-progress {
-            width: 0%; /* 初期値は0% */
+            width: 0%;
             height: 100%;
             background-color: #111111;
             border-radius: 7px;
             position: absolute;
             top: 0;
             left: 0;
-            transition: width 0.2s;
         }
         
         /* ボードの下部（足元） */
@@ -251,8 +252,11 @@
                     <a href="ns_audio/BlueLightRiddim_20260621.mp3" download="BlueLightRiddim_20260621.mp3" class="blue-magnet-btn">DOWNLOAD</a>
                 </div>
                 <div class="custom-player-zone">
+                    <audio src="ns_audio/BlueLightRiddim_20260621.mp3" preload="none"></audio>
                     <button class="big-play-btn" onclick="togglePlay(this)">▶</button>
-                    <div class="custom-seeker"><div class="custom-progress"></div></div>
+                    <div class="custom-seeker" onclick="seek(event, this)">
+                        <div class="custom-progress"></div>
+                    </div>
                 </div>
             </div>
             
@@ -266,8 +270,11 @@
                     <a href="ns_audio/reg5_portaugust.mp3" download="reg5_portaugust.mp3" class="blue-magnet-btn">DOWNLOAD</a>
                 </div>
                 <div class="custom-player-zone">
+                    <audio src="ns_audio/reg5_portaugust.mp3" preload="none"></audio>
                     <button class="big-play-btn" onclick="togglePlay(this)">▶</button>
-                    <div class="custom-seeker"><div class="custom-progress"></div></div>
+                    <div class="custom-seeker" onclick="seek(event, this)">
+                        <div class="custom-progress"></div>
+                    </div>
                 </div>
             </div>
             
@@ -281,8 +288,11 @@
                     <a href="ns_audio/1100AMRiddim_20260625.mp3" download="1100AMRiddim_20260625.mp3" class="blue-magnet-btn">DOWNLOAD</a>
                 </div>
                 <div class="custom-player-zone">
+                    <audio src="ns_audio/1100AMRiddim_20260625.mp3" preload="none"></audio>
                     <button class="big-play-btn" onclick="togglePlay(this)">▶</button>
-                    <div class="custom-seeker"><div class="custom-progress"></div></div>
+                    <div class="custom-seeker" onclick="seek(event, this)">
+                        <div class="custom-progress"></div>
+                    </div>
                 </div>
             </div>
 
@@ -296,8 +306,11 @@
                     <a href="ns_audio/SultryCity.mp3" download="SultryCity.mp3" class="blue-magnet-btn">DOWNLOAD</a>
                 </div>
                 <div class="custom-player-zone">
+                    <audio src="ns_audio/SultryCity.mp3" preload="none"></audio>
                     <button class="big-play-btn" onclick="togglePlay(this)">▶</button>
-                    <div class="custom-seeker"><div class="custom-progress"></div></div>
+                    <div class="custom-seeker" onclick="seek(event, this)">
+                        <div class="custom-progress"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -316,8 +329,11 @@
                     <a href="ns_audio/KETTE_DRUM_Riddim_Nagamoto_master_20260524.mp3" download="KETTE_DRUM_Riddim_Nagamoto_master_20260524.mp3" class="green-magnet-btn">DOWNLOAD</a>
                 </div>
                 <div class="custom-player-zone">
+                    <audio src="ns_audio/KETTE_DRUM_Riddim_Nagamoto_master_20260524.mp3" preload="none"></audio>
                     <button class="big-play-btn" onclick="togglePlay(this)">▶</button>
-                    <div class="custom-seeker"><div class="custom-progress"></div></div>
+                    <div class="custom-seeker" onclick="seek(event, this)">
+                        <div class="custom-progress"></div>
+                    </div>
                 </div>
             </div>
 
@@ -331,8 +347,11 @@
                     <a href="ns_audio/NewCapturRiddim_20260621.mp3" download="NewCapturRiddim_20260621.mp3" class="green-magnet-btn">DOWNLOAD</a>
                 </div>
                 <div class="custom-player-zone">
+                    <audio src="ns_audio/NewCapturRiddim_20260621.mp3" preload="none"></audio>
                     <button class="big-play-btn" onclick="togglePlay(this)">▶</button>
-                    <div class="custom-seeker"><div class="custom-progress"></div></div>
+                    <div class="custom-seeker" onclick="seek(event, this)">
+                        <div class="custom-progress"></div>
+                    </div>
                 </div>
             </div>
             
@@ -346,8 +365,11 @@
                     <a href="ns_audio/SlengTengRiddim_20260621.mp3" download="SlengTengRiddim_20260621.mp3" class="green-magnet-btn">DOWNLOAD</a>
                 </div>
                 <div class="custom-player-zone">
+                    <audio src="ns_audio/SlengTengRiddim_20260621.mp3" preload="none"></audio>
                     <button class="big-play-btn" onclick="togglePlay(this)">▶</button>
-                    <div class="custom-seeker"><div class="custom-progress"></div></div>
+                    <div class="custom-seeker" onclick="seek(event, this)">
+                        <div class="custom-progress"></div>
+                    </div>
                 </div>
             </div>
 
@@ -361,8 +383,11 @@
                     <a href="ns_audio/Dem Time Deh_remake.mp3" download="Dem Time Deh_remake.mp3" class="green-magnet-btn">DOWNLOAD</a>
                 </div>
                 <div class="custom-player-zone">
+                    <audio src="ns_audio/Dem Time Deh_remake.mp3" preload="none"></audio>
                     <button class="big-play-btn" onclick="togglePlay(this)">▶</button>
-                    <div class="custom-seeker"><div class="custom-progress"></div></div>
+                    <div class="custom-seeker" onclick="seek(event, this)">
+                        <div class="custom-progress"></div>
+                    </div>
                 </div>
             </div>
 
@@ -376,8 +401,11 @@
                     <a href="ns_audio/IoneLionZionRiddim_20260621.mp3" download="IoneLionZionRiddim_20260621.mp3" class="green-magnet-btn">DOWNLOAD</a>
                 </div>
                 <div class="custom-player-zone">
+                    <audio src="ns_audio/IoneLionZionRiddim_20260621.mp3" preload="none"></audio>
                     <button class="big-play-btn" onclick="togglePlay(this)">▶</button>
-                    <div class="custom-seeker"><div class="custom-progress"></div></div>
+                    <div class="custom-seeker" onclick="seek(event, this)">
+                        <div class="custom-progress"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -391,27 +419,70 @@
 </div>
 
 <script>
-// 音を鳴らさず、見た目のデザイン切り替えだけを行う記述です
+// 現在再生中のaudio要素を保持する変数
+var currentAudio = null;
+var currentBtn = null;
+
 function togglePlay(btn) {
-    var progressBar = btn.nextElementSibling.querySelector('.custom-progress');
+    var zone = btn.parentElement;
+    var audio = zone.querySelector('audio');
+    var progressBar = zone.querySelector('.custom-progress');
     
-    if (btn.classList.contains('playing')) {
-        btn.classList.remove('playing');
-        btn.innerHTML = '▶';
-        progressBar.style.width = '0%';
-    } else {
-        // 他のすべてのボタンとバーを一度リセット
-        var allBtns = document.querySelectorAll('.big-play-btn');
-        allBtns.forEach(function(b) {
-            b.classList.remove('playing');
-            b.innerHTML = '▶';
-            b.nextElementSibling.querySelector('.custom-progress').style.width = '0%';
-        });
-        
-        // 押されたボタンだけを再生中（赤色・一時停止マーク）にする
+    // 他の曲が流れていたら停止させてボタンの見た目を戻す
+    if (currentAudio && currentAudio !== audio) {
+        currentAudio.pause();
+        if (currentBtn) {
+            currentBtn.classList.remove('playing');
+            currentBtn.innerHTML = '▶';
+        }
+    }
+
+    if (audio.paused) {
+        audio.play();
         btn.classList.add('playing');
         btn.innerHTML = '‖';
-        progressBar.style.width = '45%'; // デザイン確認用にバーを少し進める
+        currentAudio = audio;
+        currentBtn = btn;
+        
+        // 再生位置に合わせてシークバー（黒いゲージ）をリアルタイムに伸ばす設定
+        audio.ontimeupdate = function() {
+            if (audio.duration) {
+                var percentage = (audio.currentTime / audio.duration) * 100;
+                progressBar.style.width = percentage + '%';
+            }
+        };
+        
+        // 曲が最後まで終わったらボタンの見た目を「▶」に戻す
+        audio.onended = function() {
+            btn.classList.remove('playing');
+            btn.innerHTML = '▶';
+            progressBar.style.width = '0%';
+            currentAudio = null;
+            currentBtn = null;
+        };
+    } else {
+        audio.pause();
+        btn.classList.remove('playing');
+        btn.innerHTML = '▶';
+        currentAudio = null;
+        currentBtn = null;
+    }
+}
+
+// シークバーの好きな場所をクリックしてスキップ（早送り・巻き戻し）できる機能
+function seek(event, seeker) {
+    var zone = seeker.parentElement;
+    var audio = zone.querySelector('audio');
+    
+    // 再生可能状態（データ読み込み済み）の時だけスキップさせる
+    if (audio.duration) {
+        var rect = seeker.getBoundingClientRect();
+        var clickX = event.clientX - rect.left;
+        var width = rect.width;
+        var percentage = clickX / width;
+        
+        audio.currentTime = percentage * audio.duration;
+        zone.querySelector('.custom-progress').style.width = (percentage * 100) + '%';
     }
 }
 </script>

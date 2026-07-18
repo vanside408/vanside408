@@ -129,6 +129,7 @@
             flex-shrink: 0;
             text-align: center;
             min-width: 130px;
+            cursor: pointer;
         }
         .blue-magnet-btn:active {
             transform: translateY(2px);
@@ -153,6 +154,7 @@
             flex-shrink: 0;
             text-align: center;
             min-width: 130px;
+            cursor: pointer;
         }
         .green-magnet-btn:active {
             transform: translateY(2px);
@@ -191,7 +193,6 @@
             padding: 0;
             line-height: 1;
         }
-        /* 再生中（一時停止マーク）のときの背景色 */
         .big-play-btn.playing {
             background-color: #d9534f;
         }
@@ -249,7 +250,7 @@
                         <div class="track-num">TRACK 1：</div>
                         <div class="track-name-plain">BLUELIGHT RIDDIM</div>
                     </div>
-                    <a href="ns_audio/BlueLightRiddim_20260621.mp3" download="BlueLightRiddim_20260621.mp3" class="blue-magnet-btn">DOWNLOAD</a>
+                    <a class="blue-magnet-btn" onclick="confirmDownload('ns_audio/BlueLightRiddim_20260621.mp3', 'BLUELIGHT RIDDIM')">DOWNLOAD</a>
                 </div>
                 <div class="custom-player-zone">
                     <audio src="ns_audio/BlueLightRiddim_20260621.mp3" preload="none"></audio>
@@ -267,7 +268,7 @@
                         <div class="track-num">TRACK 2：</div>
                         <div class="track-name-plain">PORT AUGUST</div>
                     </div>
-                    <a href="ns_audio/reg5_portaugust.mp3" download="reg5_portaugust.mp3" class="blue-magnet-btn">DOWNLOAD</a>
+                    <a class="blue-magnet-btn" onclick="confirmDownload('ns_audio/reg5_portaugust.mp3', 'PORT AUGUST')">DOWNLOAD</a>
                 </div>
                 <div class="custom-player-zone">
                     <audio src="ns_audio/reg5_portaugust.mp3" preload="none"></audio>
@@ -285,7 +286,7 @@
                         <div class="track-num">TRACK 3：</div>
                         <div class="track-name-plain">1100 AM Riddim</div>
                     </div>
-                    <a href="ns_audio/1100AMRiddim_20260625.mp3" download="1100AMRiddim_20260625.mp3" class="blue-magnet-btn">DOWNLOAD</a>
+                    <a class="blue-magnet-btn" onclick="confirmDownload('ns_audio/1100AMRiddim_20260625.mp3', '1100 AM Riddim')">DOWNLOAD</a>
                 </div>
                 <div class="custom-player-zone">
                     <audio src="ns_audio/1100AMRiddim_20260625.mp3" preload="none"></audio>
@@ -303,7 +304,7 @@
                         <div class="track-num">TRACK 4：</div>
                         <div class="track-name-plain">Sultry City</div>
                     </div>
-                    <a href="ns_audio/SultryCity.mp3" download="SultryCity.mp3" class="blue-magnet-btn">DOWNLOAD</a>
+                    <a class="blue-magnet-btn" onclick="confirmDownload('ns_audio/SultryCity.mp3', 'Sultry City')">DOWNLOAD</a>
                 </div>
                 <div class="custom-player-zone">
                     <audio src="ns_audio/SultryCity.mp3" preload="none"></audio>
@@ -326,7 +327,7 @@
                         <div class="track-num">TRACK 1：</div>
                         <div class="track-name-plain">KETTE DRUM Riddim_</div>
                     </div>
-                    <a href="ns_audio/KETTE_DRUM_Riddim_Nagamoto_master_20260524.mp3" download="KETTE_DRUM_Riddim_Nagamoto_master_20260524.mp3" class="green-magnet-btn">DOWNLOAD</a>
+                    <a class="green-magnet-btn" onclick="confirmDownload('ns_audio/KETTE_DRUM_Riddim_Nagamoto_master_20260524.mp3', 'KETTE DRUM Riddim_')">DOWNLOAD</a>
                 </div>
                 <div class="custom-player-zone">
                     <audio src="ns_audio/KETTE_DRUM_Riddim_Nagamoto_master_20260524.mp3" preload="none"></audio>
@@ -344,7 +345,7 @@
                         <div class="track-num">TRACK 2：</div>
                         <div class="track-name-plain">NewCapturRiddim</div>
                     </div>
-                    <a href="ns_audio/NewCapturRiddim_20260621.mp3" download="NewCapturRiddim_20260621.mp3" class="green-magnet-btn">DOWNLOAD</a>
+                    <a class="green-magnet-btn" onclick="confirmDownload('ns_audio/NewCapturRiddim_20260621.mp3', 'NewCapturRiddim')">DOWNLOAD</a>
                 </div>
                 <div class="custom-player-zone">
                     <audio src="ns_audio/NewCapturRiddim_20260621.mp3" preload="none"></audio>
@@ -362,7 +363,7 @@
                         <div class="track-num">TRACK 3：</div>
                         <div class="track-name-plain">Sleng Teng Riddim</div>
                     </div>
-                    <a href="ns_audio/SlengTengRiddim_20260621.mp3" download="SlengTengRiddim_20260621.mp3" class="green-magnet-btn">DOWNLOAD</a>
+                    <a class="green-magnet-btn" onclick="confirmDownload('ns_audio/SlengTengRiddim_20260621.mp3', 'Sleng Teng Riddim')">DOWNLOAD</a>
                 </div>
                 <div class="custom-player-zone">
                     <audio src="ns_audio/SlengTengRiddim_20260621.mp3" preload="none"></audio>
@@ -380,7 +381,7 @@
                         <div class="track-num">TRACK 4：</div>
                         <div class="track-name-plain">Dem Time Deh_riddim</div>
                     </div>
-                    <a href="ns_audio/Dem Time Deh_remake.mp3" download="Dem Time Deh_remake.mp3" class="green-magnet-btn">DOWNLOAD</a>
+                    <a class="green-magnet-btn" onclick="confirmDownload('ns_audio/Dem Time Deh_remake.mp3', 'Dem Time Deh_riddim')">DOWNLOAD</a>
                 </div>
                 <div class="custom-player-zone">
                     <audio src="ns_audio/Dem Time Deh_remake.mp3" preload="none"></audio>
@@ -398,7 +399,7 @@
                         <div class="track-num">TRACK 5：</div>
                         <div class="track-name-plain">IoneLionZionRiddim_20260621.mp3</div>
                     </div>
-                    <a href="ns_audio/IoneLionZionRiddim_20260621.mp3" download="IoneLionZionRiddim_20260621.mp3" class="green-magnet-btn">DOWNLOAD</a>
+                    <a class="green-magnet-btn" onclick="confirmDownload('ns_audio/IoneLionZionRiddim_20260621.mp3', 'IoneLionZionRiddim_20260621.mp3')">DOWNLOAD</a>
                 </div>
                 <div class="custom-player-zone">
                     <audio src="ns_audio/IoneLionZionRiddim_20260621.mp3" preload="none"></audio>
@@ -419,16 +420,15 @@
 </div>
 
 <script>
-// 現在再生中のaudio要素を保持する変数
 var currentAudio = null;
 var currentBtn = null;
 
+// 音声再生・一時停止処理
 function togglePlay(btn) {
     var zone = btn.parentElement;
     var audio = zone.querySelector('audio');
     var progressBar = zone.querySelector('.custom-progress');
     
-    // 他の曲が流れていたら停止させてボタンの見た目を戻す
     if (currentAudio && currentAudio !== audio) {
         currentAudio.pause();
         if (currentBtn) {
@@ -444,7 +444,6 @@ function togglePlay(btn) {
         currentAudio = audio;
         currentBtn = btn;
         
-        // 再生位置に合わせてシークバー（黒いゲージ）をリアルタイムに伸ばす設定
         audio.ontimeupdate = function() {
             if (audio.duration) {
                 var percentage = (audio.currentTime / audio.duration) * 100;
@@ -452,7 +451,6 @@ function togglePlay(btn) {
             }
         };
         
-        // 曲が最後まで終わったらボタンの見た目を「▶」に戻す
         audio.onended = function() {
             btn.classList.remove('playing');
             btn.innerHTML = '▶';
@@ -469,12 +467,11 @@ function togglePlay(btn) {
     }
 }
 
-// シークバーの好きな場所をクリックしてスキップ（早送り・巻き戻し）できる機能
+// シークバーのクリック位置調整
 function seek(event, seeker) {
     var zone = seeker.parentElement;
     var audio = zone.querySelector('audio');
     
-    // 再生可能状態（データ読み込み済み）の時だけスキップさせる
     if (audio.duration) {
         var rect = seeker.getBoundingClientRect();
         var clickX = event.clientX - rect.left;
@@ -483,6 +480,20 @@ function seek(event, seeker) {
         
         audio.currentTime = percentage * audio.duration;
         zone.querySelector('.custom-progress').style.width = (percentage * 100) + '%';
+    }
+}
+
+// 【復活】ダウンロードの確認と実行処理
+function confirmDownload(fileUrl, trackName) {
+    var result = confirm(trackName + ' をダウンロードしますか？');
+    if (result) {
+        // OKを押したときだけ隠しリンクを作成してダウンロードを実行
+        var link = document.createElement('a');
+        link.href = fileUrl;
+        link.download = fileUrl.split('/').pop(); // ファイル名を取得
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
 }
 </script>
